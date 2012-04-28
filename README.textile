@@ -31,20 +31,17 @@ end
 </pre>
 
 Now we can use it like that:
-<pre>
-album = MusicAlbum.new
+<pre>album = MusicAlbum.new
 album.set_value :name, 'Machine memory shells'
 album.set_value :create_date, Time.now
 album.set_value 'tracks > 0 > number', 1
 album.set_value 'tracks > 0 > file_name', 'Summer Breeze.mp3'
 album.set_value 'more > credits', 'Some credits here'
 
-album.to_hash
-</pre>
+album.to_hash</pre>
 
 This assignation is also valid:
-<pre>
-album.set_value 'feedback', ['why only 5?', 'it`s like idm', 'when will be mbwm?']
+<pre>album.set_value 'feedback', ['why only 5?', 'it`s like idm', 'when will be mbwm?']
 </pre>
 
 Now you can pass result hash to view, db, checksum calc or others.
