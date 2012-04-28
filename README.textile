@@ -1,0 +1,50 @@
+h1. SModel
+======
+
+h2. Simple passive model implementation.
+
+h3. Usage:
+
+<pre>
+class TrackInfo
+  include SModel::BaseModel
+  element :number, Integer
+  element :description, String, :default_value => 'it`s another track'
+  element :file_name, String
+  element :file_url, String
+end
+
+class MoreInfo
+  include SModel::BaseModel
+  element :credits, String
+end
+
+class MusicAlbum 
+  include SModel::BaseModel
+  element :id, String
+  element :name, String
+  element :create_date, DateTime  
+  has_many :tracks, TrackInfo
+  has_many :feedback, String
+  has_one :more, MoreInfo
+end
+</pre>
+
+Now we can use it like that:
+<pre>
+album = MusicAlbum.new
+album.set_value :name, 'Machine memory shells'
+album.set_value :create_date, Time.now
+album.set_value 'tracks > 0 > number', 1
+album.set_value 'tracks > 0 > file_name', 'Summer Breeze.mp3'
+album.set_value 'more > credits', 'Some credits here'
+
+album.to_hash
+</pre>
+
+This assignation is also valid:
+<pre>
+album.set_value 'feedback', ['why only 5?', 'it`s like idm', 'when will be mbwm?']
+</pre>
+
+Now you can pass result hash to view, db, checksum calc or others.
